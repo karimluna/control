@@ -4,4 +4,3 @@ A cheatsheet with python examples of mathematical principles. The common pattern
 
 This is the result of my own motivation and interest in control theory.
 
-
