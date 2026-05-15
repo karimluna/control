@@ -1,0 +1,119 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, marvosym}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=0pt}
+\usepackage{xfrac}
+
+% --- XELATEX ADJUSTMENT HERE ---
+% Removed 'pdftex' driver option. XeLaTeX handles this automatically.
+\usepackage[
+            pdfauthor={Karim Luna},
+            pdftitle={Control Cheatsheet},
+            pdfsubject={A cheatsheet pdf based on my study and research},
+            hidelinks % Optional: hides those ugly red/green boxes around links
+            ]{hyperref}
+% -------------------------------
+
+\usepackage[open, openlevel=2]{bookmark}
+\usepackage{relsize}
+\usepackage{rotating}
+\usepackage{titlesec}
+
+% Math & Logic Commands
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+\copy0\kern-\wd0\mkern4mu\box0}} 
+            
+\newcommand{\noin}{\noindent}    
+\newcommand{\logit}{\textrm{logit}} 
+\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}} 
+\newcommand{\corr}{\textrm{Corr}} 
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Bern}{\textrm{Bern}}
+\newcommand{\Bin}{\textrm{Bin}}
+\newcommand{\Beta}{\textrm{Beta}}
+\newcommand{\Gam}{\textrm{Gamma}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Pois}{\textrm{Pois}}
+\newcommand{\Unif}{\textrm{Unif}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\NBin}{\textrm{NBin}}
+\newcommand{\HGeom}{\textrm{HGeom}}
+\newcommand{\Mult}{\textrm{Mult}}
+
+\geometry{top=.4in,left=.2in,right=.2in,bottom=.4in}
+
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Section Formatting
+\titleformat{\section}
+{\color{red}\normalfont\sffamily\large\bfseries} % Added \sffamily
+{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{1.2ex}{0.6ex}
+
+\titleformat{\subsection}
+{\color{cyan}\normalfont\sffamily\normalsize\bfseries} % Added \sffamily
+{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+% multicol parameters
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    {\color{black} \Large{ \sffamily\textbf{Control Cheatsheet}}} \\
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ATTRIBUTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\scriptsize
+Created by Karim \hfill Last Updated \today
+
+\vspace{2pt}
+\hrule
+\vspace{4pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN CHEATSHEET
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Laplace Transform}
+
+Laplace transforms are generalized Fourier transform, used to transform PDEs into simpler ODEs. Is designed to handle poorly behaved functions, such as exponentials. 
+
+\end{multicols*} 
+\end{document}
