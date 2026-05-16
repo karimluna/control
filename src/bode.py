@@ -4,7 +4,7 @@ from scipy import signal
 from utils import _set_style
 
 _set_style()
-# Sistema: G(s) = 1/((s+1)(s+2))
+# G(s) = 1/((s+1)(s+2))
 num = [1]
 den = [1, 3, 2]   # s^2 + 3s + 2
 G = signal.TransferFunction(num, den)
