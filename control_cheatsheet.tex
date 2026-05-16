@@ -92,7 +92,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{center}
-    {\color{black} \Large{ \sffamily\textbf{Control Cheatsheet}}} \\
+    {\color{black} \Large{ \sffamily\textbf{Control Systems}}} \\
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +100,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \scriptsize
-Created by Karim \hfill Last Updated \today
+Created by Karim Luna \hfill Last Updated \today
 
 \vspace{2pt}
 \hrule
@@ -109,6 +109,9 @@ Created by Karim \hfill Last Updated \today
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Definitions}
+
 
 \section{Laplace Transform} \smallskip \hrule height 2pt \smallskip
 
@@ -164,15 +167,48 @@ Created by Karim \hfill Last Updated \today
         &\mathcal{L}\{\ddot{f}\}=s^2F(s)-sf(0)-\dot{f}(0), \\
         &\mathcal{L}\left\{\int_0^t f d\tau \right\}=\frac{F(s)}{s}, \\
     \end{align*}
-    In control theory we almost always assume zero initial conditions $f(0)=0$.
+    But in general we almost always assume zero initial conditions so $f(0)=0$.
     \newline
 
-    If and only if all poles of $sF(s)$ are in the Left-Half Plane (LHP) we can verify by the final value theorem a steady-state output,
+    The final value theorem is valid if and only if all poles of $sF(s)$ are in the Left-Half Plane (LHP),
     \begin{align*}
-        \lim_{t\rightarrow\infty}f(t)=\lim_{s\rightarrow0}sF(s)
+        \lim_{t\rightarrow\infty}f(t)=\lim_{s\rightarrow0}sF(s),
+    \end{align*}    
+    And is a tool used to verify a steady-state output or final value as time approaches infinity.
+
+
+    \subsection{From frequency domain to time domain}
+    Let $F(s)$ be a rational Laplace transform from which we wish to find the time response $f(t)$. The most direct approach is to expand $F(s)$ into a sum of simpler terms. 
+
+    For distinct real poles, the expansion is given by:
+    \begin{align*}
+        F(s)=\frac{N(s)}{(s+a)(s+b)}=\frac{A}{s+a}+\frac{B}{s+b},\\[1mm]
+        A=\lim_{s\rightarrow -a}(s+a)F(s),\quad B=\lim_{s\rightarrow -b}(s+b)F(s).
     \end{align*}
+    Finding $A$ and $B$ and then applying the inverse Laplace transform is straightforward.
     \newline
-    
+
+    However, if $F(s)$ contains a second-order repeated pole at $s = -a$, the function takes the form:
+    \begin{align*}
+        F(s) = \frac{N(s)}{(s+a)^2} &= \frac{A_1}{s+a} + \frac{A_2}{(s+a)^2}, \\[1mm]
+        A_2 = \lim_{s\rightarrow -a}(s+a)^2 F(s), &\quad A_1 = \lim_{s\rightarrow -a}\frac{d}{ds}\left[(s+a)^2 F(s)\right].
+    \end{align*}
+    The derivative is required for $A_1$ to isolate the lower-power coefficient. The resulting inverse Laplace transform introduces a time-multiplied exponential mode:
+    \begin{align*}
+        \boxed{f(t) = A_1 e^{-at} + A_2 t e^{-at}, \quad t \ge 0}
+    \end{align*}
+
+\section{Transfer Functions and Block Algebra}\smallskip \hrule height 2pt \smallskip
+    \subsection{Derivation}
+    The input ($u$) and output ($y$) behavior of a linear time-invariant (LTI) system can be modeled by a linear differential equation of the form,
+    \begin{align*}
+        a_0\frac{d^ny}{dt^n}+a_1\frac{d^{n-1}y}{dt^{n-1}}+\cdots+a_ny=b_0\frac{d^mu}{dt^m}+b_1\frac{d^{m-1}u}{dt^m}+\cdots+b_mu,
+    \end{align*}
+    where $n\ge m$ and $a_k,b_k\in\mathbf{R}$. To derivate the transfer funciton G(s) we just have to write the governing ODE, apply Laplace term by term ($u\rightarrow U(s), y\rightarrow Y(s)$) and solve for $Y(s)/U(s)$. Thus,
+    \begin{align*}
+        G(s)=\frac{\mathcal{L}[\text{output}]}{\mathcal{L}[\text{input}]}\Bigg|_{\text{zero initial conditions}}
+    \end{align*}
+
 
 \end{multicols*} 
 \end{document}
