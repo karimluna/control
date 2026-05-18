@@ -198,17 +198,42 @@ Created by Karim Luna \hfill Last Updated \today
         \boxed{f(t) = A_1 e^{-at} + A_2 t e^{-at}, \quad t \ge 0}
     \end{align*}
 
+
 \section{Transfer Functions and Block Algebra}\smallskip \hrule height 2pt \smallskip
     \subsection{Derivation}
-    The input ($u$) and output ($y$) behavior of a linear time-invariant (LTI) system can be modeled by a linear differential equation of the form,
+    The input ($u$) and output ($y$) behavior of a linear time-invariant (LTI) system can be modeled by a linear differential equation of the form:
     \begin{align*}
-        a_0\frac{d^ny}{dt^n}+a_1\frac{d^{n-1}y}{dt^{n-1}}+\cdots+a_ny=b_0\frac{d^mu}{dt^m}+b_1\frac{d^{m-1}u}{dt^m}+\cdots+b_mu,
+        a_0\frac{d^ny}{dt^n}+a_1\frac{d^{n-1}y}{dt^{n-1}}+\cdots+a_ny=b_0\frac{d^mu}{dt^m}+b_1\frac{d^{m-1}u}{dt^{m-1}}+\cdots+b_mu,
     \end{align*}
-    where $n\ge m$ and $a_k,b_k\in\mathbf{R}$. To derivate the transfer funciton G(s) we just have to write the governing ODE, apply Laplace term by term ($u\rightarrow U(s), y\rightarrow Y(s)$) and solve for $Y(s)/U(s)$. Thus,
+    where $n\ge m$ and $a_k,b_k\in\mathbf{R}$. To derive the transfer function $G(s)$, we apply the Laplace transform term by term assuming zero initial conditions ($u(t) \rightarrow U(s)$, $y(t) \rightarrow Y(s)$) and solve for the ratio of output to input:
     \begin{align*}
-        G(s)=\frac{\mathcal{L}[\text{output}]}{\mathcal{L}[\text{input}]}\Bigg|_{\text{zero initial conditions}}
+        G(s)= \frac{Y(s)}{U(s)}=\frac{\mathcal{L}\{\text{output}\}}{\mathcal{L}\{\text{input}\}}\Bigg|_{\text{zero initial conditions}}
     \end{align*}
+    This function is an inherent property of the system dynamics alone and does not provide information regarding its physical structure.
+    \newline 
 
+    \subsection{Transfer Matrix}
+    For multiple-input, multiple-output (MIMO) systems featuring $r$ inputs and $m$ outputs, the system properties are represented by the transfer matrix $\mathbf{G}(s)\in \mathbf{R}^{m\times r}$. Given the output vector $\mathbf{y}$ and input vector $\mathbf{u}$:
+    \begin{align*}            
+        \mathbf{y} = 
+        \begin{bmatrix}
+        y_1 \\ 
+        \vdots \\ 
+        y_m
+        \end{bmatrix},
+        \quad\quad
+        \mathbf{u} =
+        \begin{bmatrix}
+        u_1 \\ 
+        \vdots \\ 
+        u_r
+        \end{bmatrix}
+    \end{align*}
+    The transfer matrix can be directly obtained from the state-space representation as:
+    \begin{align*}
+        \mathbf{G}(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}
+    \end{align*}
+    where $\mathbf{A}\in\mathbf{R}^{n \times n}$ is the state (dynamics) matrix, $\mathbf{B}\in\mathbf{R}^{n\times r}$ is the input (control) matrix, $\mathbf{C}\in\mathbf{R}^{m\times n}$ is the output (sensor) matrix, and $\mathbf{D}\in\mathbf{R}^{m\times r}$ is the direct transmission (feedforward) matrix, the latter matrix being non-zero if we are modelling a static system or when we have a large sampling interval.
 
 \end{multicols*} 
 \end{document}
